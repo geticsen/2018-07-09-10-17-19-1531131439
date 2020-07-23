@@ -1,13 +1,13 @@
-package practice11;
+package practice11.temp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Klass implements  JoinSubject{
+public class Klass {
     private int number;
     private Student leader;
     private List<Student> members = new ArrayList<Student>();
-    private List<JoinListener> listeners = new ArrayList<JoinListener>();
+    private List<Teacher> teachers = new ArrayList<Teacher>();
 
     public Klass(int number) {
         this.number = number;
@@ -25,15 +25,15 @@ public class Klass implements  JoinSubject{
         return "Class " + this.number;
     }
 
-    public void addTeacher(JoinListener joinListener) {
-        this.listeners.add(joinListener);
+    public void addTeacher(Teacher teacher) {
+        this.teachers.add(teacher);
     }
 
     public void assignLeader(Student student) {
         if (this.members.contains(student)) {
             this.leader = student;
-            for (JoinListener joinListener:this.listeners) {
-                joinListener.updade(student);
+            for (Teacher teacher:this.teachers) {
+                teacher.update(student);
             }
         } else {
             System.out.print("It is not one of us.\n");
@@ -43,8 +43,8 @@ public class Klass implements  JoinSubject{
     public void appendMember(Student student) {
         this.members.add(student);
         student.updateKlass(this);
-        for (JoinListener joinListener:this.listeners) {
-            joinListener.updade(student);
+        for (Teacher teacher:this.teachers) {
+            teacher.update(student);
         }
     }
 
@@ -54,10 +54,5 @@ public class Klass implements  JoinSubject{
         } else {
             return false;
         }
-    }
-
-    @Override
-    public void subjectNotify() {
-
     }
 }

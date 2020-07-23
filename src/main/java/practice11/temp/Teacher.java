@@ -1,9 +1,9 @@
-package practice11;
+package practice11.temp;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Teacher extends Person implements  JoinListener{
+public class Teacher extends Person {
     private List<Klass> classes = new LinkedList<Klass>();
 
     public List<Klass> getClasses() {
@@ -54,8 +54,7 @@ public class Teacher extends Person implements  JoinListener{
         }
     }
 
-    @Override
-    public void updade(Student student) {
+    public void update(Student student) {
         if (student.getKlass().getLeader() == null || !student.getKlass().getLeader().equals(student)) {
             System.out.print("I am " + this.name + ". I know " + student.getName() + " has joined Class " + student.getKlass().getNumber() + ".\n");
         } else {
